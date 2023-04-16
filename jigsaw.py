@@ -1,5 +1,13 @@
+import io
 from math import ceil
 import random
+import cv2
+import numpy as np
+from decorators import timer
+import cairosvg
+import io
+from PIL import Image
+import defusedxml.ElementTree as ET
 
 """
 Generate jigsaw motifs and digital puzzle sets.
@@ -12,6 +20,7 @@ jigsaw_factory
 """
 
 
+@timer
 def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
     """Generate a jigsaw motif (template) to be used as the cutting lines"""
     number_of_pieces = pieces_height * pieces_width
@@ -51,8 +60,10 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
 
         # Top section
         if row > 1:
+            # Use inverted command from adjacent piece
             t = all_commands['{}-{}-t'.format(row, col)]
         else:
+            # Edge piece
             t = "L {}, {}".format(str(x), str(origin_h))
         commands.append(t)
         all_commands["{}-{}-t".format(row, col)] = t
@@ -133,32 +144,22 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
 
         commands.append(b)
 
-        # all_commands["{}-{}-b".format(row, col)] = b
         if col > 1:
             l = all_commands["{}-{}-l".format(row, col)]
             commands.append(l)
-        # elif col == pieces_width:
 
+        # Close path (including straight line if left edge piece)
         commands.append("z")
 
+        # Construct path element
         d = "\n\t".join(commands)
-        color = "#"+''.join([random.choice('0123456789ABCDEF')
-                            for j in range(6)])
-        path = '<path stroke="{}" fill="{}" d="{}" />'.format(color, color, d)
+        path = '<path stroke="white" fill="white" d="{}" />'.format(d)
         paths.append(path)
 
-    print(all_commands)
-    # print(i, row, col)
     paths = "\n\t".join(paths)
     svg_template = """\
 <svg width="{}" height="{}">
     {}
-    <circle cx="200" cy="0" r="2"/>
-    <circle cx="170" cy="106.5" r="2"/>
-    <circle cx="230" cy="150" r="2"/>
-    <circle cx="200" cy="213" r="2"/>
-    <circle fill="red" cx="200" cy="85.2" r="2"/>
-    <circle fill="red" cx="200" cy="127.8" r="2"/>
 </svg>
     """.format(abs_width, abs_height, paths)
     svg_file = open("motif.svg", "w")
@@ -169,13 +170,46 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
 generate_motif(5, 4, 1065, 800)
 
 
-def generate_masks(motif_file, image_file):
+@timer
+def generate_masks(motif_file):
     """Generate binary masks from the image and motif"""
 
+    # Get each path from motif file
+    tree = ET.parse(motif_file)
+    root = tree.getroot()
+    width, height = root.attrib["width"], tree.getroot().attrib["height"]
+    paths = root.findall('path')
 
-def generate_jigsaw():
+    # Create a binary mask per jigsaw piece
+    masks = []
+    for p, path in enumerate(paths):
+        # Create a new SVG file with just the current path element
+        new_svg = f'<svg width="{width}" height="{height}">{ET.tostring(path)}</svg>'
+
+        # Convert the SVG file to a PNG image using cairosvg
+        mem = io.BytesIO()
+        cairosvg.svg2png(bytestring=new_svg,
+                         write_to=mem, background_color=None)
+        masks.append(np.array(Image.open(mem)))
+    return masks
+
+
+masks = generate_masks('motif.svg')
+
+
+@timer
+def generate_jigsaw(original_image, masks):
     """Generate set of puzzle pieces as individual .PNG files"""
-    pass
+    image = cv2.imread(original_image)
+    for m, mask in enumerate(masks):
+        mask = cv2.cvtColor(mask, cv2.COLOR_RGB2GRAY)
+        result = cv2.bitwise_and(image, image, mask=mask)
+        result = cv2.cvtColor(result, cv2.COLOR_BGR2BGRA)
+        result[:, :, 3] = mask
+        cv2.imwrite("./pieces/{}.png".format(m), result)
+
+
+generate_jigsaw("original_image.jpg", masks)
 
 
 def jigsaw_factory():

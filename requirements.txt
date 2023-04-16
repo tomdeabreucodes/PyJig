@@ -1,1 +1,5 @@
-
+CairoSVG==2.7.0
+defusedxml==0.7.1
+numpy==1.24.2
+opencv_contrib_python==4.7.0.72
+Pillow==9.5.0
