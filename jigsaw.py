@@ -6,7 +6,7 @@ import numpy as np
 from decorators import timer
 import cairosvg
 import io
-from PIL import Image
+from PIL import Image, ImageFilter
 import defusedxml.ElementTree as ET
 
 """
@@ -167,7 +167,7 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
     svg_file.close()
 
 
-generate_motif(5, 4, 1065, 800)
+generate_motif(4, 5, 745, 944)
 
 
 @timer
@@ -206,10 +206,16 @@ def generate_jigsaw(original_image, masks):
         result = cv2.bitwise_and(image, image, mask=mask)
         result = cv2.cvtColor(result, cv2.COLOR_BGR2BGRA)
         result[:, :, 3] = mask
-        cv2.imwrite("./pieces/{}.png".format(m), result)
+        contours = cv2.findContours(
+            mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        contours = contours[0] if len(contours) == 2 else contours[1]
+        cntr = contours[0]
+        x, y, w, h = cv2.boundingRect(cntr)
+        piece = result[y:y+h, x:x+w]
+        cv2.imwrite(f"./pieces/{m}.png", piece)
 
 
-generate_jigsaw("original_image.jpg", masks)
+generate_jigsaw("mrincredible.jpg", masks)
 
 
 def jigsaw_factory():
