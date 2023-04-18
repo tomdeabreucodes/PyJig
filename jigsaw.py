@@ -6,7 +6,7 @@ import numpy as np
 from decorators import timer
 import cairosvg
 import io
-from PIL import Image, ImageFilter
+from PIL import Image
 import defusedxml.ElementTree as ET
 
 """
@@ -167,7 +167,7 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
     svg_file.close()
 
 
-generate_motif(4, 5, 745, 944)
+generate_motif(5, 8, 630, 1200)
 
 
 @timer
@@ -184,12 +184,12 @@ def generate_masks(motif_file):
     masks = []
     for p, path in enumerate(paths):
         # Create a new SVG file with just the current path element
-        new_svg = f'<svg width="{width}" height="{height}">{ET.tostring(path)}</svg>'
+        new_svg = f'<svg shape-rendering="crispEdges" width="{width}" height="{height}">{ET.tostring(path)}</svg>'
 
         # Convert the SVG file to a PNG image using cairosvg
         mem = io.BytesIO()
         cairosvg.svg2png(bytestring=new_svg,
-                         write_to=mem, background_color=None)
+                         write_to=mem, background_color=None,)
         masks.append(np.array(Image.open(mem)))
     return masks
 
@@ -202,20 +202,44 @@ def generate_jigsaw(original_image, masks):
     """Generate set of puzzle pieces as individual .PNG files"""
     image = cv2.imread(original_image)
     for m, mask in enumerate(masks):
+        # Apply mask
         mask = cv2.cvtColor(mask, cv2.COLOR_RGB2GRAY)
         result = cv2.bitwise_and(image, image, mask=mask)
-        result = cv2.cvtColor(result, cv2.COLOR_BGR2BGRA)
-        result[:, :, 3] = mask
+
+        # Crop to match minimum size (bbox)
         contours = cv2.findContours(
             mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         contours = contours[0] if len(contours) == 2 else contours[1]
         cntr = contours[0]
         x, y, w, h = cv2.boundingRect(cntr)
-        piece = result[y:y+h, x:x+w]
-        cv2.imwrite(f"./pieces/{m}.png", piece)
+
+        # Add buffer to avoid harsh cutoffs when softening edges
+        if x > 0:
+            x -= 4
+            w += 8
+        else:
+            w += 4
+        if y > 0:
+            y -= 4
+            h += 8
+        else:
+            h += 4
+
+        # Soften edges
+        edge_mask = np.zeros(image.shape, dtype=np.uint8)
+        cv2.drawContours(edge_mask, contours, -1, (255, 255, 255), 3)
+        blur_piece = cv2.GaussianBlur(result, (9, 9), 0)
+        final_piece = np.where(edge_mask == np.array(
+            [255, 255, 255]), blur_piece, result)
+
+        # Add transparency and save piece as PNG
+        final_piece = cv2.cvtColor(final_piece, cv2.COLOR_BGR2BGRA)
+        final_piece[:, :, 3] = mask
+        final_piece = final_piece[y:y+h, x:x+w]
+        cv2.imwrite(f"./pieces/{m}.png", final_piece)
 
 
-generate_jigsaw("mrincredible.jpg", masks)
+generate_jigsaw("Zugpsitze_mountain.jpg", masks)
 
 
 def jigsaw_factory():
