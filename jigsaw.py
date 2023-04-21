@@ -1,5 +1,5 @@
 import io
-from math import ceil
+from math import ceil, floor
 import random
 import cv2
 import numpy as np
@@ -8,6 +8,7 @@ import cairosvg
 import io
 from PIL import Image
 import defusedxml.ElementTree as ET
+from svgpathtools import svg2paths
 
 """
 Generate jigsaw motifs and digital puzzle sets.
@@ -184,7 +185,7 @@ def generate_masks(motif_file):
     masks = []
     for p, path in enumerate(paths):
         # Create a new SVG file with just the current path element
-        new_svg = f'<svg shape-rendering="crispEdges" width="{width}" height="{height}">{ET.tostring(path)}</svg>'
+        new_svg = f'<svg width="{width}" height="{height}">{ET.tostring(path)}</svg>'
 
         # Convert the SVG file to a PNG image using cairosvg
         mem = io.BytesIO()
@@ -198,7 +199,7 @@ masks = generate_masks('motif.svg')
 
 
 @timer
-def generate_jigsaw(original_image, masks):
+def generate_png_jigsaw(original_image, masks):
     """Generate set of puzzle pieces as individual .PNG files"""
     image = cv2.imread(original_image)
     for m, mask in enumerate(masks):
@@ -228,7 +229,7 @@ def generate_jigsaw(original_image, masks):
         # Soften edges
         edge_mask = np.zeros(image.shape, dtype=np.uint8)
         cv2.drawContours(edge_mask, contours, -1, (255, 255, 255), 3)
-        blur_piece = cv2.GaussianBlur(result, (9, 9), 0)
+        blur_piece = cv2.GaussianBlur(result, (13, 13), 0)
         final_piece = np.where(edge_mask == np.array(
             [255, 255, 255]), blur_piece, result)
 
@@ -239,7 +240,32 @@ def generate_jigsaw(original_image, masks):
         cv2.imwrite(f"./pieces/{m}.png", final_piece)
 
 
-generate_jigsaw("Zugpsitze_mountain.jpg", masks)
+# generate_png_jigsaw("Zugpsitze_mountain.jpg", masks)
+
+@timer
+def generate_svg_jigsaw(motif_file):
+    paths, _ = svg2paths(motif_file)
+
+    for p, path in enumerate(paths):
+        # Initialise the overall min-max with the first path
+        xmin, xmax, ymin, ymax = path.bbox()
+        print(path.bbox())
+        width = xmax-xmin
+        height = ymax-ymin
+        svg = """\
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="{} {} {w} {h}" width="{w}" height="{h}">
+   <path id="cropPath" d="{d}" />
+  <clipPath id="crop">
+    <use xlink:href="#cropPath" />
+  </clipPath>
+  <image xlink:href="/home/artfvl/Documents/code/PyJig/pieces/Zugpsitze_mountain.jpg" clip-path="url(#crop)" />
+</svg>
+""".format(xmin, ymin, w=width, h=height, d=path.d())
+        with open(f'./pieces/{p}.svg', 'w') as file:
+            file.write(svg)
+
+
+generate_svg_jigsaw("motif.svg")
 
 
 def jigsaw_factory():
