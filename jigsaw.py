@@ -1,3 +1,4 @@
+import base64
 import io
 from math import ceil, floor
 import random
@@ -190,7 +191,7 @@ def generate_masks(motif_file):
         # Convert the SVG file to a PNG image using cairosvg
         mem = io.BytesIO()
         cairosvg.svg2png(bytestring=new_svg,
-                         write_to=mem, background_color=None,)
+                         write_to=mem, background_color=None)
         masks.append(np.array(Image.open(mem)))
     return masks
 
@@ -242,30 +243,44 @@ def generate_png_jigsaw(original_image, masks):
 
 # generate_png_jigsaw("Zugpsitze_mountain.jpg", masks)
 
-@timer
-def generate_svg_jigsaw(motif_file):
-    paths, _ = svg2paths(motif_file)
 
+def image_encode(original_image):
+    ext = original_image.split(".")[1]
+    ext = "jpeg" if ext == "jpg" else ext
+    with open(original_image, "rb") as image:
+        encoded_string = base64.b64encode(image.read()).decode('utf-8')
+    return (ext, encoded_string)
+
+
+@timer
+def generate_svg_jigsaw(motif_file: str, original_image: str):
+    ext, encoded = image_encode(original_image)
+    paths, _ = svg2paths(motif_file)
+    # Get bounding box for each path and generate svg from template
     for p, path in enumerate(paths):
-        # Initialise the overall min-max with the first path
         xmin, xmax, ymin, ymax = path.bbox()
-        print(path.bbox())
         width = xmax-xmin
         height = ymax-ymin
         svg = """\
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="{} {} {w} {h}" width="{w}" height="{h}">
-   <path id="cropPath" d="{d}" />
-  <clipPath id="crop">
-    <use xlink:href="#cropPath" />
-  </clipPath>
-  <image xlink:href="/home/artfvl/Documents/code/PyJig/pieces/Zugpsitze_mountain.jpg" clip-path="url(#crop)" />
+    <defs>
+        <path id="cropPath" d="{d}" />
+        <clipPath id="crop">
+            <use xlink:href="#cropPath" />
+        </clipPath>
+    </defs>
+    <image xlink:href="data:image/{ext};base64,{encoded}" clip-path="url(#crop)"/>
 </svg>
-""".format(xmin, ymin, w=width, h=height, d=path.d())
+""".format(xmin, ymin, w=width, h=height, d=path.d(), ext=ext, encoded=encoded)
+        print(svg)
         with open(f'./pieces/{p}.svg', 'w') as file:
             file.write(svg)
 
+        # cairosvg.svg2svg(
+        #     bytestring=svg, write_to=f'./pieces/{p}.svg', background_color=None)
 
-generate_svg_jigsaw("motif.svg")
+
+generate_svg_jigsaw("motif.svg", "Zugpsitze_mountain.jpg")
 
 
 def jigsaw_factory():
