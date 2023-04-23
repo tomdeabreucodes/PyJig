@@ -1,15 +1,16 @@
 import base64
 import io
-from math import ceil, floor
+from math import ceil
 import random
+import subprocess
 import cv2
 import numpy as np
 from decorators import timer
 import cairosvg
-import io
 from PIL import Image
 import defusedxml.ElementTree as ET
 from svgpathtools import svg2paths
+
 
 """
 Generate jigsaw motifs and digital puzzle sets.
@@ -254,33 +255,34 @@ def image_encode(original_image):
 
 @timer
 def generate_svg_jigsaw(motif_file: str, original_image: str):
+    bboxes = subprocess.check_output(
+        ["inkscape", "--query-all", "./{}".format(motif_file)]).decode('utf-8')
+    bboxes = bboxes.split("\n")[1:-1]
     ext, encoded = image_encode(original_image)
     paths, _ = svg2paths(motif_file)
-    # Get bounding box for each path and generate svg from template
+
+    # Apply bounding box for each path and generate svg from template
     for p, path in enumerate(paths):
-        xmin, xmax, ymin, ymax = path.bbox()
-        width = xmax-xmin
-        height = ymax-ymin
+        xmin, ymin, width, height = bboxes[p].split(",")[1:]
         svg = """\
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="{} {} {w} {h}" width="{w}" height="{h}">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="{} {} {w} {h}" width="{w}" height="{h}">
     <defs>
         <path id="cropPath" d="{d}" />
         <clipPath id="crop">
-            <use xlink:href="#cropPath" />
+            <use href="#cropPath" />
         </clipPath>
     </defs>
-    <image xlink:href="data:image/{ext};base64,{encoded}" clip-path="url(#crop)"/>
+    <image href="data:image/{ext};base64,{encoded}" clip-path="url(#crop)"/>
 </svg>
 """.format(xmin, ymin, w=width, h=height, d=path.d(), ext=ext, encoded=encoded)
-        print(svg)
+
         with open(f'./pieces/{p}.svg', 'w') as file:
             file.write(svg)
 
-        # cairosvg.svg2svg(
-        #     bytestring=svg, write_to=f'./pieces/{p}.svg', background_color=None)
+    return "Svg puzzle set generated: {} ({} pieces)".format(original_image, len(paths))
 
 
-generate_svg_jigsaw("motif.svg", "Zugpsitze_mountain.jpg")
+print(generate_svg_jigsaw("motif.svg", "Zugpsitze_mountain.jpg"))
 
 
 def jigsaw_factory():
