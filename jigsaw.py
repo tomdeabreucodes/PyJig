@@ -1,5 +1,6 @@
 import base64
 import io
+import json
 from math import ceil
 import random
 import subprocess
@@ -31,15 +32,30 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
     paths = []
     all_commands = {}
 
+    # Calculate pixel dimensions of each piece
+    piece_w = abs_width // pieces_width
+    piece_h = abs_height // pieces_height
+
+    metadata = {
+        "pieces": number_of_pieces,
+        "rows": pieces_height,
+        "cols": pieces_width,
+        "size": {
+            "total_width": abs_width,
+            "total_height": abs_height,
+            "pieces_width": piece_w,
+            "piece_height": piece_h,
+        },
+    }
+
+    with open("puzzle_info.json", "w") as outfile:
+        json.dump(metadata, outfile)
+
     # Create svg path for each piece
     for i in range(1, number_of_pieces+1):
         # Find grid position
         row = ceil(i / pieces_width)
         col = col + 1 if col < pieces_width else 1
-
-        # Calculate pixel dimentions of each piece
-        piece_w = abs_width // pieces_width
-        piece_h = abs_height // pieces_height
 
         # Set pixel start and end positions
         origin_w = (col - 1) * piece_w
@@ -255,6 +271,8 @@ def image_encode(original_image):
 
 @timer
 def generate_svg_jigsaw(motif_file: str, original_image: str):
+    metadata = json.load(open("puzzle_info.json"))
+
     bboxes = subprocess.check_output(
         ["inkscape", "--query-all", "./{}".format(motif_file)]).decode('utf-8')
     bboxes = bboxes.split("\n")[1:-1]
@@ -264,6 +282,9 @@ def generate_svg_jigsaw(motif_file: str, original_image: str):
     # Apply bounding box for each path and generate svg from template
     for p, path in enumerate(paths):
         xmin, ymin, width, height = bboxes[p].split(",")[1:]
+        metadata[p] = {}
+        print(path.d())
+        # print(metadata)
         svg = """\
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="{} {} {w} {h}" width="{w}" height="{h}">
     <defs>
@@ -278,6 +299,9 @@ def generate_svg_jigsaw(motif_file: str, original_image: str):
 
         with open(f'./pieces/{p}.svg', 'w') as file:
             file.write(svg)
+
+    with open("puzzle_info.json", "w") as outfile:
+        json.dump(metadata, outfile)
 
     return "Svg puzzle set generated: {} ({} pieces)".format(original_image, len(paths))
 
