@@ -11,7 +11,7 @@ import cairosvg
 from PIL import Image
 import defusedxml.ElementTree as ET
 from svgpathtools import svg2paths
-
+import pprint
 
 """
 Generate jigsaw motifs and digital puzzle sets.
@@ -43,19 +43,23 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
         "size": {
             "total_width": abs_width,
             "total_height": abs_height,
-            "pieces_width": piece_w,
+            "piece_width": piece_w,
             "piece_height": piece_h,
         },
     }
-
-    with open("puzzle_info.json", "w") as outfile:
-        json.dump(metadata, outfile)
 
     # Create svg path for each piece
     for i in range(1, number_of_pieces+1):
         # Find grid position
         row = ceil(i / pieces_width)
         col = col + 1 if col < pieces_width else 1
+
+        metadata[i-1] = {
+            "upper_edge": True if row == 1 else False,
+            "lower_edge": True if row == pieces_height else False,
+            "left_edge": True if col == 1 else False,
+            "right_edge": True if col == pieces_width else False,
+        }
 
         # Set pixel start and end positions
         origin_w = (col - 1) * piece_w
@@ -185,6 +189,9 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
     svg_file.write(svg_template)
     svg_file.close()
 
+    with open("puzzle_info.json", "w") as outfile:
+        json.dump(metadata, outfile)
+
 
 generate_motif(5, 8, 630, 1200)
 
@@ -213,7 +220,7 @@ def generate_masks(motif_file):
     return masks
 
 
-masks = generate_masks('motif.svg')
+# masks = generate_masks('motif.svg')
 
 
 @timer
@@ -282,9 +289,54 @@ def generate_svg_jigsaw(motif_file: str, original_image: str):
     # Apply bounding box for each path and generate svg from template
     for p, path in enumerate(paths):
         xmin, ymin, width, height = bboxes[p].split(",")[1:]
-        metadata[p] = {}
-        print(path.d())
-        # print(metadata)
+
+        top_left_corner = True if metadata[str(
+            p)]["upper_edge"] and metadata[str(p)]["left_edge"] else False
+        top_right_corner = True if metadata[str(
+            p)]["upper_edge"] and metadata[str(p)]["right_edge"] else False
+        bottom_left_corner = True if metadata[str(p)]["lower_edge"] and metadata[str(
+            p)]["left_edge"] else False
+        bottom_right_corner = True if metadata[str(
+            p)]["lower_edge"] and metadata[str(p)]["right_edge"] else False
+
+        top_anchor = 1
+        if top_left_corner or metadata[str(p)]["upper_edge"]:
+            right_anchor = 3
+            left_anchor = 27
+        elif top_right_corner:
+            right_anchor = 3
+            left_anchor = 17
+        elif metadata[str(p)]["right_edge"]:
+            right_anchor = 13
+            left_anchor = 27
+        elif bottom_right_corner:
+            right_anchor = 13
+            left_anchor = 17
+        elif bottom_left_corner or metadata[str(p)]["lower_edge"]:
+            right_anchor = 13
+            left_anchor = 27
+        else:
+            right_anchor = 13
+            left_anchor = 37
+
+        midpoint_top = (float(path.d().split(" ")[top_anchor].split(
+            ",")[0]) - float(xmin)) + (metadata["size"]["piece_width"] / 2)
+        midpoint_right = (float(path.d().split(" ")[right_anchor].split(
+            ",")[1]) - float(ymin)) + (metadata["size"]["piece_height"] / 2)
+        midpoint_bottom = (float(path.d().split(" ")[left_anchor].split(
+            ",")[0]) - float(xmin)) + (metadata["size"]["piece_width"] / 2)
+        midpoint_left = (float(path.d().split(" ")[top_anchor].split(
+            ",")[1]) - float(ymin)) + (metadata["size"]["piece_height"] / 2)
+
+        metadata[str(p)]["midpoint"] = {
+            "top": midpoint_top, "right": midpoint_right, "bottom": midpoint_bottom, "left": midpoint_left}
+        if p == 0:
+            # pprint.pprint({k: v for k, v in enumerate(path.d().split(" "))})
+            # print(xmin, ymin, width, height)
+            pass
+        print(midpoint_top, midpoint_right,
+              midpoint_bottom, midpoint_left)
+
         svg = """\
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="{} {} {w} {h}" width="{w}" height="{h}">
     <defs>
