@@ -37,7 +37,7 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
     piece_h = abs_height // pieces_height
 
     metadata = {
-        "pieces": number_of_pieces,
+        "pieces_count": number_of_pieces,
         "rows": pieces_height,
         "cols": pieces_width,
         "size": {
@@ -46,6 +46,7 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
             "piece_width": piece_w,
             "piece_height": piece_h,
         },
+        "pieces": []
     }
 
     # Create svg path for each piece
@@ -54,12 +55,12 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
         row = ceil(i / pieces_width)
         col = col + 1 if col < pieces_width else 1
 
-        metadata[i-1] = {
+        metadata["pieces"].append({
             "upper_edge": True if row == 1 else False,
             "lower_edge": True if row == pieces_height else False,
             "left_edge": True if col == 1 else False,
             "right_edge": True if col == pieces_width else False,
-        }
+        })
 
         # Set pixel start and end positions
         origin_w = (col - 1) * piece_w
@@ -290,29 +291,27 @@ def generate_svg_jigsaw(motif_file: str, original_image: str):
     for p, path in enumerate(paths):
         xmin, ymin, width, height = bboxes[p].split(",")[1:]
 
-        top_left_corner = True if metadata[str(
-            p)]["upper_edge"] and metadata[str(p)]["left_edge"] else False
-        top_right_corner = True if metadata[str(
-            p)]["upper_edge"] and metadata[str(p)]["right_edge"] else False
-        bottom_left_corner = True if metadata[str(p)]["lower_edge"] and metadata[str(
-            p)]["left_edge"] else False
-        bottom_right_corner = True if metadata[str(
-            p)]["lower_edge"] and metadata[str(p)]["right_edge"] else False
+        top_left_corner = True if metadata["pieces"][p]["upper_edge"] and metadata["pieces"][p]["left_edge"] else False
+        top_right_corner = True if metadata["pieces"][p]["upper_edge"] and metadata["pieces"][p]["right_edge"] else False
+        bottom_left_corner = True if metadata["pieces"][p][
+            "lower_edge"] and metadata["pieces"][p]["left_edge"] else False
+        bottom_right_corner = True if metadata["pieces"][p][
+            "lower_edge"] and metadata["pieces"][p]["right_edge"] else False
 
         top_anchor = 1
-        if top_left_corner or metadata[str(p)]["upper_edge"]:
+        if top_left_corner or metadata["pieces"][p]["upper_edge"]:
             right_anchor = 3
             left_anchor = 27
         elif top_right_corner:
             right_anchor = 3
             left_anchor = 17
-        elif metadata[str(p)]["right_edge"]:
+        elif metadata["pieces"][p]["right_edge"]:
             right_anchor = 13
             left_anchor = 27
         elif bottom_right_corner:
             right_anchor = 13
             left_anchor = 17
-        elif bottom_left_corner or metadata[str(p)]["lower_edge"]:
+        elif bottom_left_corner or metadata["pieces"][p]["lower_edge"]:
             right_anchor = 13
             left_anchor = 27
         else:
@@ -328,14 +327,8 @@ def generate_svg_jigsaw(motif_file: str, original_image: str):
         midpoint_left = (float(path.d().split(" ")[top_anchor].split(
             ",")[1]) - float(ymin)) + (metadata["size"]["piece_height"] / 2)
 
-        metadata[str(p)]["midpoint"] = {
+        metadata["pieces"][p]["midpoint"] = {
             "top": midpoint_top, "right": midpoint_right, "bottom": midpoint_bottom, "left": midpoint_left}
-        if p == 0:
-            # pprint.pprint({k: v for k, v in enumerate(path.d().split(" "))})
-            # print(xmin, ymin, width, height)
-            pass
-        print(midpoint_top, midpoint_right,
-              midpoint_bottom, midpoint_left)
 
         svg = """\
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="{} {} {w} {h}" width="{w}" height="{h}">

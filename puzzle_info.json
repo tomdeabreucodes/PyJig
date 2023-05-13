@@ -1,1 +1,493 @@
-{"pieces": 40, "rows": 5, "cols": 8, "size": {"total_width": 1200, "total_height": 630, "piece_width": 150, "piece_height": 126}, "0": {"upper_edge": true, "lower_edge": false, "left_edge": true, "right_edge": false, "midpoint": {"top": 75.5, "right": 63.5, "bottom": 75.5, "left": 63.5}}, "1": {"upper_edge": true, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 92.375, "right": 63.5, "bottom": 92.375, "left": 63.5}}, "2": {"upper_edge": true, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.507, "right": 63.5, "bottom": 85.507, "left": 63.5}}, "3": {"upper_edge": true, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.507, "right": 63.5, "bottom": 85.507, "left": 63.5}}, "4": {"upper_edge": true, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 92.375, "right": 63.5, "bottom": 92.375, "left": 63.5}}, "5": {"upper_edge": true, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 92.375, "right": 63.5, "bottom": 92.375, "left": 63.5}}, "6": {"upper_edge": true, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 92.375, "right": 63.5, "bottom": 92.375, "left": 63.5}}, "7": {"upper_edge": true, "lower_edge": false, "left_edge": false, "right_edge": true, "midpoint": {"top": 85.50999999999999, "right": 63.5, "bottom": 63.00999999999999, "left": 63.5}}, "8": {"upper_edge": false, "lower_edge": false, "left_edge": true, "right_edge": false, "midpoint": {"top": 75.5, "right": 77.675, "bottom": 75.5, "left": 77.675}}, "9": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 92.375, "right": 71.904, "bottom": 92.375, "left": 71.904}}, "10": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 92.375, "right": 71.904, "bottom": 92.375, "left": 71.904}}, "11": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 92.375, "right": 77.675, "bottom": 92.375, "left": 77.675}}, "12": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 92.375, "right": 77.675, "bottom": 92.375, "left": 77.675}}, "13": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.50699999999995, "right": 77.675, "bottom": 85.50699999999995, "left": 77.675}}, "14": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.50699999999995, "right": 71.904, "bottom": 85.50699999999995, "left": 71.904}}, "15": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": true, "midpoint": {"top": 85.50999999999999, "right": 71.904, "bottom": 85.50999999999999, "left": 71.904}}, "16": {"upper_edge": false, "lower_edge": false, "left_edge": true, "right_edge": false, "midpoint": {"top": 75.5, "right": 77.67500000000001, "bottom": 75.5, "left": 77.67500000000001}}, "17": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 92.375, "right": 77.67500000000001, "bottom": 92.375, "left": 77.67500000000001}}, "18": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 92.375, "right": 77.67500000000001, "bottom": 92.375, "left": 77.67500000000001}}, "19": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 92.375, "right": 77.67500000000001, "bottom": 92.375, "left": 77.67500000000001}}, "20": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.50699999999995, "right": 71.904, "bottom": 85.50699999999995, "left": 71.904}}, "21": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.50699999999995, "right": 71.904, "bottom": 85.50699999999995, "left": 71.904}}, "22": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.50699999999995, "right": 71.904, "bottom": 85.50699999999995, "left": 71.904}}, "23": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": true, "midpoint": {"top": 92.38000000000011, "right": 71.904, "bottom": 92.38000000000011, "left": 71.904}}, "24": {"upper_edge": false, "lower_edge": false, "left_edge": true, "right_edge": false, "midpoint": {"top": 75.5, "right": 77.67500000000001, "bottom": 75.5, "left": 77.67500000000001}}, "25": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.507, "right": 77.67500000000001, "bottom": 85.507, "left": 77.67500000000001}}, "26": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.507, "right": 77.67500000000001, "bottom": 85.507, "left": 77.67500000000001}}, "27": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.507, "right": 71.904, "bottom": 85.507, "left": 71.904}}, "28": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 92.375, "right": 71.904, "bottom": 92.375, "left": 71.904}}, "29": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.50699999999995, "right": 71.904, "bottom": 85.50699999999995, "left": 71.904}}, "30": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.50699999999995, "right": 77.67500000000001, "bottom": 85.50699999999995, "left": 77.67500000000001}}, "31": {"upper_edge": false, "lower_edge": false, "left_edge": false, "right_edge": true, "midpoint": {"top": 92.38000000000011, "right": 77.67500000000001, "bottom": 92.38000000000011, "left": 77.67500000000001}}, "32": {"upper_edge": false, "lower_edge": true, "left_edge": true, "right_edge": false, "midpoint": {"top": 75.5, "right": 71.904, "bottom": 75.5, "left": 71.904}}, "33": {"upper_edge": false, "lower_edge": true, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.507, "right": 71.904, "bottom": 85.507, "left": 71.904}}, "34": {"upper_edge": false, "lower_edge": true, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.507, "right": 71.904, "bottom": 85.507, "left": 71.904}}, "35": {"upper_edge": false, "lower_edge": true, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.507, "right": 77.67500000000001, "bottom": 85.507, "left": 77.67500000000001}}, "36": {"upper_edge": false, "lower_edge": true, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.50699999999995, "right": 71.904, "bottom": 85.50699999999995, "left": 71.904}}, "37": {"upper_edge": false, "lower_edge": true, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.50699999999995, "right": 71.904, "bottom": 85.50699999999995, "left": 71.904}}, "38": {"upper_edge": false, "lower_edge": true, "left_edge": false, "right_edge": false, "midpoint": {"top": 85.50699999999995, "right": 77.67500000000001, "bottom": 85.50699999999995, "left": 77.67500000000001}}, "39": {"upper_edge": false, "lower_edge": true, "left_edge": false, "right_edge": true, "midpoint": {"top": 92.38000000000011, "right": 71.904, "bottom": 114.88000000000011, "left": 71.904}}}
+{
+    "pieces_count": 40,
+    "rows": 5,
+    "cols": 8,
+    "size": {
+        "total_width": 1200,
+        "total_height": 630,
+        "piece_width": 150,
+        "piece_height": 126
+    },
+    "pieces": [
+        {
+            "upper_edge": true,
+            "lower_edge": false,
+            "left_edge": true,
+            "right_edge": false,
+            "midpoint": {
+                "top": 75.5,
+                "right": 63.5,
+                "bottom": 75.5,
+                "left": 63.5
+            }
+        },
+        {
+            "upper_edge": true,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.507,
+                "right": 63.5,
+                "bottom": 85.507,
+                "left": 63.5
+            }
+        },
+        {
+            "upper_edge": true,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.507,
+                "right": 63.5,
+                "bottom": 85.507,
+                "left": 63.5
+            }
+        },
+        {
+            "upper_edge": true,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.507,
+                "right": 63.5,
+                "bottom": 85.507,
+                "left": 63.5
+            }
+        },
+        {
+            "upper_edge": true,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.50699999999995,
+                "right": 63.5,
+                "bottom": 85.50699999999995,
+                "left": 63.5
+            }
+        },
+        {
+            "upper_edge": true,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.50699999999995,
+                "right": 63.5,
+                "bottom": 85.50699999999995,
+                "left": 63.5
+            }
+        },
+        {
+            "upper_edge": true,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.50699999999995,
+                "right": 63.5,
+                "bottom": 85.50699999999995,
+                "left": 63.5
+            }
+        },
+        {
+            "upper_edge": true,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": true,
+            "midpoint": {
+                "top": 85.50999999999999,
+                "right": 63.5,
+                "bottom": 63.00999999999999,
+                "left": 63.5
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": true,
+            "right_edge": false,
+            "midpoint": {
+                "top": 75.5,
+                "right": 71.904,
+                "bottom": 75.5,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.507,
+                "right": 71.904,
+                "bottom": 85.507,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.507,
+                "right": 71.904,
+                "bottom": 85.507,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.507,
+                "right": 71.904,
+                "bottom": 85.507,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 92.375,
+                "right": 71.904,
+                "bottom": 92.375,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.50699999999995,
+                "right": 71.904,
+                "bottom": 85.50699999999995,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 92.375,
+                "right": 71.904,
+                "bottom": 92.375,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": true,
+            "midpoint": {
+                "top": 85.50999999999999,
+                "right": 71.904,
+                "bottom": 85.50999999999999,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": true,
+            "right_edge": false,
+            "midpoint": {
+                "top": 75.5,
+                "right": 71.904,
+                "bottom": 75.5,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.507,
+                "right": 71.904,
+                "bottom": 85.507,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 92.375,
+                "right": 71.904,
+                "bottom": 92.375,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.507,
+                "right": 77.67500000000001,
+                "bottom": 85.507,
+                "left": 77.67500000000001
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 92.375,
+                "right": 71.904,
+                "bottom": 92.375,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 92.375,
+                "right": 77.67500000000001,
+                "bottom": 92.375,
+                "left": 77.67500000000001
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.50699999999995,
+                "right": 71.904,
+                "bottom": 85.50699999999995,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": true,
+            "midpoint": {
+                "top": 85.50999999999999,
+                "right": 71.904,
+                "bottom": 85.50999999999999,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": true,
+            "right_edge": false,
+            "midpoint": {
+                "top": 75.5,
+                "right": 71.904,
+                "bottom": 75.5,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.507,
+                "right": 77.67500000000001,
+                "bottom": 85.507,
+                "left": 77.67500000000001
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.507,
+                "right": 71.904,
+                "bottom": 85.507,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 92.375,
+                "right": 77.67500000000001,
+                "bottom": 92.375,
+                "left": 77.67500000000001
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 92.375,
+                "right": 77.67500000000001,
+                "bottom": 92.375,
+                "left": 77.67500000000001
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 92.375,
+                "right": 71.904,
+                "bottom": 92.375,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.50699999999995,
+                "right": 71.904,
+                "bottom": 85.50699999999995,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": false,
+            "left_edge": false,
+            "right_edge": true,
+            "midpoint": {
+                "top": 85.50999999999999,
+                "right": 77.67500000000001,
+                "bottom": 85.50999999999999,
+                "left": 77.67500000000001
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": true,
+            "left_edge": true,
+            "right_edge": false,
+            "midpoint": {
+                "top": 75.5,
+                "right": 71.904,
+                "bottom": 75.5,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": true,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.507,
+                "right": 71.904,
+                "bottom": 85.507,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": true,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 92.375,
+                "right": 77.67500000000001,
+                "bottom": 92.375,
+                "left": 77.67500000000001
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": true,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.507,
+                "right": 77.67500000000001,
+                "bottom": 85.507,
+                "left": 77.67500000000001
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": true,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 92.375,
+                "right": 77.67500000000001,
+                "bottom": 92.375,
+                "left": 77.67500000000001
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": true,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 85.50699999999995,
+                "right": 71.904,
+                "bottom": 85.50699999999995,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": true,
+            "left_edge": false,
+            "right_edge": false,
+            "midpoint": {
+                "top": 92.375,
+                "right": 71.904,
+                "bottom": 92.375,
+                "left": 71.904
+            }
+        },
+        {
+            "upper_edge": false,
+            "lower_edge": true,
+            "left_edge": false,
+            "right_edge": true,
+            "midpoint": {
+                "top": 92.38000000000011,
+                "right": 71.904,
+                "bottom": 114.88000000000011,
+                "left": 71.904
+            }
+        }
+    ]
+}
