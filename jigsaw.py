@@ -25,7 +25,7 @@ jigsaw_factory
 
 
 @timer
-def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
+def generate_motif(name, pieces_height, pieces_width, abs_height=100, abs_width=100):
     """Generate a jigsaw motif (template) to be used as the cutting lines"""
     number_of_pieces = pieces_height * pieces_width
     col = 0
@@ -37,16 +37,17 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
     piece_h = abs_height // pieces_height
 
     metadata = {
-        "pieces_count": number_of_pieces,
-        "rows": pieces_height,
-        "cols": pieces_width,
-        "size": {
-            "total_width": abs_width,
-            "total_height": abs_height,
-            "piece_width": piece_w,
-            "piece_height": piece_h,
+        "Name": name,
+        "PiecesCount": number_of_pieces,
+        "Rows": pieces_height,
+        "Cols": pieces_width,
+        "JigsawSize": {
+            "TotalWidth": abs_width,
+            "TotalHeight": abs_height,
+            "PieceWidth": piece_w,
+            "PieceHeight": piece_h,
         },
-        "pieces": []
+        "Pieces": []
     }
 
     # Create svg path for each piece
@@ -55,11 +56,11 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
         row = ceil(i / pieces_width)
         col = col + 1 if col < pieces_width else 1
 
-        metadata["pieces"].append({
-            "upper_edge": True if row == 1 else False,
-            "lower_edge": True if row == pieces_height else False,
-            "left_edge": True if col == 1 else False,
-            "right_edge": True if col == pieces_width else False,
+        metadata["Pieces"].append({
+            "UpperEdge": True if row == 1 else False,
+            "LowerEdge": True if row == pieces_height else False,
+            "LeftEdge": True if col == 1 else False,
+            "RightEdge": True if col == pieces_width else False,
         })
 
         # Set pixel start and end positions
@@ -78,7 +79,7 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
         curve_multiplier_1 = random.choice([0.85, 1.15])
         curve_multiplier_2 = 0.85 if curve_multiplier_1 != 0.85 else 1.15
 
-        # Start command dictionary for storing commands for reuse on adjacent pieces
+        # Start command dictionary for storing commands for reuse on adjacent Pieces
         commands = []
         commands.append("M {}, {}".format(origin_w, origin_h))
 
@@ -109,7 +110,7 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
                     origin_h+(piece_h * 0.5)+((to_v_notch+v_notch)-(piece_h * 0.5))*2)
             )
 
-            # Create an inverted verseion for replicating the left side of the adjacent piece
+            # Create an inverted verseion for replicating the Left side of the adjacent piece
             r_inverted = "C {x},{y} {w_curve_1},{half_piece_h} {x}, {to_notch_start} S {w_curve_2},{control_point} {x},{to_notch_end} S {x},{origin_h} {x},{origin_h}".format(
                 x=str(x),
                 y=str(y),
@@ -147,7 +148,7 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
                     origin_w+(piece_w * 0.5)-((to_h_notch+h_notch)-(piece_w * 0.5))*2)
             )
 
-            # Create an inverted verseion for replicating the left side of the adjacent piece
+            # Create an inverted verseion for replicating the Left side of the adjacent piece
             b_inverted = "C {origin_w},{y} {half_piece_w},{w_curve_1} {to_notch_start},{y} S {control_point},{w_curve_2} {to_notch_end},{y} S {x},{y} {x},{y}".format(
                 x=str(x),
                 y=str(y),
@@ -172,7 +173,7 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
             l = all_commands["{}-{}-l".format(row, col)]
             commands.append(l)
 
-        # Close path (including straight line if left edge piece)
+        # Close path (including straight line if Left edge piece)
         commands.append("z")
 
         # Construct path element
@@ -194,7 +195,7 @@ def generate_motif(pieces_height, pieces_width, abs_height=100, abs_width=100):
         json.dump(metadata, outfile)
 
 
-generate_motif(5, 8, 630, 1200)
+generate_motif("Zugpsitze Mountain Landscape", 5, 8, 630, 1200)
 
 
 @timer
@@ -226,14 +227,14 @@ def generate_masks(motif_file):
 
 @timer
 def generate_png_jigsaw(original_image, masks):
-    """Generate set of puzzle pieces as individual .PNG files"""
+    """Generate set of puzzle Pieces as individual .PNG files"""
     image = cv2.imread(original_image)
     for m, mask in enumerate(masks):
         # Apply mask
         mask = cv2.cvtColor(mask, cv2.COLOR_RGB2GRAY)
         result = cv2.bitwise_and(image, image, mask=mask)
 
-        # Crop to match minimum size (bbox)
+        # Crop to match minimum JigsawSize (bbox)
         contours = cv2.findContours(
             mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         contours = contours[0] if len(contours) == 2 else contours[1]
@@ -263,7 +264,7 @@ def generate_png_jigsaw(original_image, masks):
         final_piece = cv2.cvtColor(final_piece, cv2.COLOR_BGR2BGRA)
         final_piece[:, :, 3] = mask
         final_piece = final_piece[y:y+h, x:x+w]
-        cv2.imwrite(f"./pieces/{m}.png", final_piece)
+        cv2.imwrite(f"./Pieces/{m}.png", final_piece)
 
 
 # generate_png_jigsaw("Zugpsitze_mountain.jpg", masks)
@@ -291,27 +292,27 @@ def generate_svg_jigsaw(motif_file: str, original_image: str):
     for p, path in enumerate(paths):
         xmin, ymin, width, height = bboxes[p].split(",")[1:]
 
-        top_left_corner = True if metadata["pieces"][p]["upper_edge"] and metadata["pieces"][p]["left_edge"] else False
-        top_right_corner = True if metadata["pieces"][p]["upper_edge"] and metadata["pieces"][p]["right_edge"] else False
-        bottom_left_corner = True if metadata["pieces"][p][
-            "lower_edge"] and metadata["pieces"][p]["left_edge"] else False
-        bottom_right_corner = True if metadata["pieces"][p][
-            "lower_edge"] and metadata["pieces"][p]["right_edge"] else False
+        top_left_corner = True if metadata["Pieces"][p]["UpperEdge"] and metadata["Pieces"][p]["LeftEdge"] else False
+        top_right_corner = True if metadata["Pieces"][p]["UpperEdge"] and metadata["Pieces"][p]["RightEdge"] else False
+        bottom_left_corner = True if metadata["Pieces"][p][
+            "LowerEdge"] and metadata["Pieces"][p]["LeftEdge"] else False
+        bottom_right_corner = True if metadata["Pieces"][p][
+            "LowerEdge"] and metadata["Pieces"][p]["RightEdge"] else False
 
         top_anchor = 1
-        if top_left_corner or metadata["pieces"][p]["upper_edge"]:
+        if top_left_corner or metadata["Pieces"][p]["UpperEdge"]:
             right_anchor = 3
             left_anchor = 27
         elif top_right_corner:
             right_anchor = 3
             left_anchor = 17
-        elif metadata["pieces"][p]["right_edge"]:
+        elif metadata["Pieces"][p]["RightEdge"]:
             right_anchor = 13
             left_anchor = 27
         elif bottom_right_corner:
             right_anchor = 13
             left_anchor = 17
-        elif bottom_left_corner or metadata["pieces"][p]["lower_edge"]:
+        elif bottom_left_corner or metadata["Pieces"][p]["LowerEdge"]:
             right_anchor = 13
             left_anchor = 27
         else:
@@ -319,16 +320,16 @@ def generate_svg_jigsaw(motif_file: str, original_image: str):
             left_anchor = 37
 
         midpoint_top = (float(path.d().split(" ")[top_anchor].split(
-            ",")[0]) - float(xmin)) + (metadata["size"]["piece_width"] / 2)
+            ",")[0]) - float(xmin)) + (metadata["JigsawSize"]["PieceWidth"] / 2)
         midpoint_right = (float(path.d().split(" ")[right_anchor].split(
-            ",")[1]) - float(ymin)) + (metadata["size"]["piece_height"] / 2)
+            ",")[1]) - float(ymin)) + (metadata["JigsawSize"]["PieceHeight"] / 2)
         midpoint_bottom = (float(path.d().split(" ")[left_anchor].split(
-            ",")[0]) - float(xmin)) + (metadata["size"]["piece_width"] / 2)
+            ",")[0]) - float(xmin)) + (metadata["JigsawSize"]["PieceWidth"] / 2)
         midpoint_left = (float(path.d().split(" ")[top_anchor].split(
-            ",")[1]) - float(ymin)) + (metadata["size"]["piece_height"] / 2)
+            ",")[1]) - float(ymin)) + (metadata["JigsawSize"]["PieceHeight"] / 2)
 
-        metadata["pieces"][p]["midpoint"] = {
-            "top": midpoint_top, "right": midpoint_right, "bottom": midpoint_bottom, "left": midpoint_left}
+        metadata["Pieces"][p]["Midpoint"] = {
+            "Top": midpoint_top, "Right": midpoint_right, "Bottom": midpoint_bottom, "Left": midpoint_left}
 
         svg = """\
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="{} {} {w} {h}" width="{w}" height="{h}">
@@ -342,13 +343,13 @@ def generate_svg_jigsaw(motif_file: str, original_image: str):
 </svg>
 """.format(xmin, ymin, w=width, h=height, d=path.d(), ext=ext, encoded=encoded)
 
-        with open(f'./pieces/{p}.svg', 'w') as file:
+        with open(f'./Pieces/{p}.svg', 'w') as file:
             file.write(svg)
 
     with open("puzzle_info.json", "w") as outfile:
         json.dump(metadata, outfile)
 
-    return "Svg puzzle set generated: {} ({} pieces)".format(original_image, len(paths))
+    return "Svg puzzle set generated: {} ({} Pieces)".format(original_image, len(paths))
 
 
 print(generate_svg_jigsaw("motif.svg", "Zugpsitze_mountain.jpg"))
