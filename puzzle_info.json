@@ -1,1 +1,412 @@
-{"Name": "Zugpsitze Mountain Landscape", "PiecesCount": 40, "Rows": 5, "Cols": 8, "JigsawSize": {"TotalWidth": 1200, "TotalHeight": 630, "PieceWidth": 150, "PieceHeight": 126}, "Pieces": [{"UpperEdge": true, "LowerEdge": false, "LeftEdge": true, "RightEdge": false, "Midpoint": {"Top": 75.5, "Right": 63.5, "Bottom": 75.5, "Left": 63.5}}, {"UpperEdge": true, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 92.375, "Right": 63.5, "Bottom": 92.375, "Left": 63.5}}, {"UpperEdge": true, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 85.507, "Right": 63.5, "Bottom": 85.507, "Left": 63.5}}, {"UpperEdge": true, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 85.507, "Right": 63.5, "Bottom": 85.507, "Left": 63.5}}, {"UpperEdge": true, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 85.50699999999995, "Right": 63.5, "Bottom": 85.50699999999995, "Left": 63.5}}, {"UpperEdge": true, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 92.375, "Right": 63.5, "Bottom": 92.375, "Left": 63.5}}, {"UpperEdge": true, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 85.50699999999995, "Right": 63.5, "Bottom": 85.50699999999995, "Left": 63.5}}, {"UpperEdge": true, "LowerEdge": false, "LeftEdge": false, "RightEdge": true, "Midpoint": {"Top": 92.38000000000011, "Right": 63.5, "Bottom": 114.88000000000011, "Left": 63.5}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": true, "RightEdge": false, "Midpoint": {"Top": 75.5, "Right": 77.675, "Bottom": 75.5, "Left": 77.675}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 85.507, "Right": 71.904, "Bottom": 85.507, "Left": 71.904}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 85.507, "Right": 71.904, "Bottom": 85.507, "Left": 71.904}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 92.375, "Right": 71.904, "Bottom": 92.375, "Left": 71.904}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 92.375, "Right": 77.675, "Bottom": 92.375, "Left": 77.675}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 92.375, "Right": 71.904, "Bottom": 92.375, "Left": 71.904}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 85.50699999999995, "Right": 77.675, "Bottom": 85.50699999999995, "Left": 77.675}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": true, "Midpoint": {"Top": 85.50999999999999, "Right": 71.904, "Bottom": 85.50999999999999, "Left": 71.904}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": true, "RightEdge": false, "Midpoint": {"Top": 75.5, "Right": 71.904, "Bottom": 75.5, "Left": 71.904}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 85.507, "Right": 71.904, "Bottom": 85.507, "Left": 71.904}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 92.375, "Right": 77.67500000000001, "Bottom": 92.375, "Left": 77.67500000000001}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 92.375, "Right": 77.67500000000001, "Bottom": 92.375, "Left": 77.67500000000001}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 85.50699999999995, "Right": 77.67500000000001, "Bottom": 85.50699999999995, "Left": 77.67500000000001}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 92.375, "Right": 71.904, "Bottom": 92.375, "Left": 71.904}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 85.50699999999995, "Right": 71.904, "Bottom": 85.50699999999995, "Left": 71.904}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": true, "Midpoint": {"Top": 85.50999999999999, "Right": 71.904, "Bottom": 85.50999999999999, "Left": 71.904}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": true, "RightEdge": false, "Midpoint": {"Top": 75.5, "Right": 71.904, "Bottom": 75.5, "Left": 71.904}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 85.507, "Right": 77.67500000000001, "Bottom": 85.507, "Left": 77.67500000000001}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 85.507, "Right": 77.67500000000001, "Bottom": 85.507, "Left": 77.67500000000001}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 92.375, "Right": 71.904, "Bottom": 92.375, "Left": 71.904}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 92.375, "Right": 77.67500000000001, "Bottom": 92.375, "Left": 77.67500000000001}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 92.375, "Right": 71.904, "Bottom": 92.375, "Left": 71.904}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 92.375, "Right": 71.904, "Bottom": 92.375, "Left": 71.904}}, {"UpperEdge": false, "LowerEdge": false, "LeftEdge": false, "RightEdge": true, "Midpoint": {"Top": 85.50999999999999, "Right": 77.67500000000001, "Bottom": 85.50999999999999, "Left": 77.67500000000001}}, {"UpperEdge": false, "LowerEdge": true, "LeftEdge": true, "RightEdge": false, "Midpoint": {"Top": 75.5, "Right": 71.904, "Bottom": 75.5, "Left": 71.904}}, {"UpperEdge": false, "LowerEdge": true, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 92.375, "Right": 71.904, "Bottom": 92.375, "Left": 71.904}}, {"UpperEdge": false, "LowerEdge": true, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 92.375, "Right": 77.67500000000001, "Bottom": 92.375, "Left": 77.67500000000001}}, {"UpperEdge": false, "LowerEdge": true, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 85.507, "Right": 77.67500000000001, "Bottom": 85.507, "Left": 77.67500000000001}}, {"UpperEdge": false, "LowerEdge": true, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 92.375, "Right": 77.67500000000001, "Bottom": 92.375, "Left": 77.67500000000001}}, {"UpperEdge": false, "LowerEdge": true, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 85.50699999999995, "Right": 77.67500000000001, "Bottom": 85.50699999999995, "Left": 77.67500000000001}}, {"UpperEdge": false, "LowerEdge": true, "LeftEdge": false, "RightEdge": false, "Midpoint": {"Top": 85.50699999999995, "Right": 71.904, "Bottom": 85.50699999999995, "Left": 71.904}}, {"UpperEdge": false, "LowerEdge": true, "LeftEdge": false, "RightEdge": true, "Midpoint": {"Top": 85.50999999999999, "Right": 71.904, "Bottom": 63.00999999999999, "Left": 71.904}}]}
+{
+    "Name": "Zugpsitze Mountain Landscape",
+    "PiecesCount": 40,
+    "Rows": 5,
+    "Cols": 8,
+    "TotalWidth": 1200,
+    "TotalHeight": 630,
+    "PieceWidth": 150,
+    "PieceHeight": 126,
+    "Pieces": [
+        {
+            "UpperEdge": true,
+            "LowerEdge": false,
+            "LeftEdge": true,
+            "RightEdge": false,
+            "MidpointTop": 75.5,
+            "MidpointRight": 63.5,
+            "MidpointBottom": 75.5,
+            "MidpointLeft": 63.5
+        },
+        {
+            "UpperEdge": true,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 85.507,
+            "MidpointRight": 63.5,
+            "MidpointBottom": 85.507,
+            "MidpointLeft": 63.5
+        },
+        {
+            "UpperEdge": true,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 85.507,
+            "MidpointRight": 63.5,
+            "MidpointBottom": 85.507,
+            "MidpointLeft": 63.5
+        },
+        {
+            "UpperEdge": true,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 85.507,
+            "MidpointRight": 63.5,
+            "MidpointBottom": 85.507,
+            "MidpointLeft": 63.5
+        },
+        {
+            "UpperEdge": true,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 92.375,
+            "MidpointRight": 63.5,
+            "MidpointBottom": 92.375,
+            "MidpointLeft": 63.5
+        },
+        {
+            "UpperEdge": true,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 92.375,
+            "MidpointRight": 63.5,
+            "MidpointBottom": 92.375,
+            "MidpointLeft": 63.5
+        },
+        {
+            "UpperEdge": true,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 85.50699999999995,
+            "MidpointRight": 63.5,
+            "MidpointBottom": 85.50699999999995,
+            "MidpointLeft": 63.5
+        },
+        {
+            "UpperEdge": true,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": true,
+            "MidpointTop": 85.50999999999999,
+            "MidpointRight": 63.5,
+            "MidpointBottom": 63.00999999999999,
+            "MidpointLeft": 63.5
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": true,
+            "RightEdge": false,
+            "MidpointTop": 75.5,
+            "MidpointRight": 71.904,
+            "MidpointBottom": 75.5,
+            "MidpointLeft": 71.904
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 92.375,
+            "MidpointRight": 71.904,
+            "MidpointBottom": 92.375,
+            "MidpointLeft": 71.904
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 92.375,
+            "MidpointRight": 71.904,
+            "MidpointBottom": 92.375,
+            "MidpointLeft": 71.904
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 85.507,
+            "MidpointRight": 77.675,
+            "MidpointBottom": 85.507,
+            "MidpointLeft": 77.675
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 92.375,
+            "MidpointRight": 77.675,
+            "MidpointBottom": 92.375,
+            "MidpointLeft": 77.675
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 85.50699999999995,
+            "MidpointRight": 71.904,
+            "MidpointBottom": 85.50699999999995,
+            "MidpointLeft": 71.904
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 85.50699999999995,
+            "MidpointRight": 71.904,
+            "MidpointBottom": 85.50699999999995,
+            "MidpointLeft": 71.904
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": true,
+            "MidpointTop": 92.38000000000011,
+            "MidpointRight": 77.675,
+            "MidpointBottom": 92.38000000000011,
+            "MidpointLeft": 77.675
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": true,
+            "RightEdge": false,
+            "MidpointTop": 75.5,
+            "MidpointRight": 77.67500000000001,
+            "MidpointBottom": 75.5,
+            "MidpointLeft": 77.67500000000001
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 92.375,
+            "MidpointRight": 77.67500000000001,
+            "MidpointBottom": 92.375,
+            "MidpointLeft": 77.67500000000001
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 85.507,
+            "MidpointRight": 71.904,
+            "MidpointBottom": 85.507,
+            "MidpointLeft": 71.904
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 85.507,
+            "MidpointRight": 77.67500000000001,
+            "MidpointBottom": 85.507,
+            "MidpointLeft": 77.67500000000001
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 85.50699999999995,
+            "MidpointRight": 71.904,
+            "MidpointBottom": 85.50699999999995,
+            "MidpointLeft": 71.904
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 85.50699999999995,
+            "MidpointRight": 71.904,
+            "MidpointBottom": 85.50699999999995,
+            "MidpointLeft": 71.904
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 85.50699999999995,
+            "MidpointRight": 77.67500000000001,
+            "MidpointBottom": 85.50699999999995,
+            "MidpointLeft": 77.67500000000001
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": true,
+            "MidpointTop": 85.50999999999999,
+            "MidpointRight": 77.67500000000001,
+            "MidpointBottom": 85.50999999999999,
+            "MidpointLeft": 77.67500000000001
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": true,
+            "RightEdge": false,
+            "MidpointTop": 75.5,
+            "MidpointRight": 77.67500000000001,
+            "MidpointBottom": 75.5,
+            "MidpointLeft": 77.67500000000001
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 92.375,
+            "MidpointRight": 71.904,
+            "MidpointBottom": 92.375,
+            "MidpointLeft": 71.904
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 85.507,
+            "MidpointRight": 71.904,
+            "MidpointBottom": 85.507,
+            "MidpointLeft": 71.904
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 92.375,
+            "MidpointRight": 71.904,
+            "MidpointBottom": 92.375,
+            "MidpointLeft": 71.904
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 85.50699999999995,
+            "MidpointRight": 71.904,
+            "MidpointBottom": 85.50699999999995,
+            "MidpointLeft": 71.904
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 85.50699999999995,
+            "MidpointRight": 71.904,
+            "MidpointBottom": 85.50699999999995,
+            "MidpointLeft": 71.904
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 92.375,
+            "MidpointRight": 71.904,
+            "MidpointBottom": 92.375,
+            "MidpointLeft": 71.904
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": false,
+            "LeftEdge": false,
+            "RightEdge": true,
+            "MidpointTop": 92.38000000000011,
+            "MidpointRight": 77.67500000000001,
+            "MidpointBottom": 92.38000000000011,
+            "MidpointLeft": 77.67500000000001
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": true,
+            "LeftEdge": true,
+            "RightEdge": false,
+            "MidpointTop": 75.5,
+            "MidpointRight": 77.67500000000001,
+            "MidpointBottom": 75.5,
+            "MidpointLeft": 77.67500000000001
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": true,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 92.375,
+            "MidpointRight": 71.904,
+            "MidpointBottom": 92.375,
+            "MidpointLeft": 71.904
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": true,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 92.375,
+            "MidpointRight": 77.67500000000001,
+            "MidpointBottom": 92.375,
+            "MidpointLeft": 77.67500000000001
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": true,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 85.507,
+            "MidpointRight": 71.904,
+            "MidpointBottom": 85.507,
+            "MidpointLeft": 71.904
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": true,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 92.375,
+            "MidpointRight": 71.904,
+            "MidpointBottom": 92.375,
+            "MidpointLeft": 71.904
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": true,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 85.50699999999995,
+            "MidpointRight": 77.67500000000001,
+            "MidpointBottom": 85.50699999999995,
+            "MidpointLeft": 77.67500000000001
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": true,
+            "LeftEdge": false,
+            "RightEdge": false,
+            "MidpointTop": 92.375,
+            "MidpointRight": 77.67500000000001,
+            "MidpointBottom": 92.375,
+            "MidpointLeft": 77.67500000000001
+        },
+        {
+            "UpperEdge": false,
+            "LowerEdge": true,
+            "LeftEdge": false,
+            "RightEdge": true,
+            "MidpointTop": 92.38000000000011,
+            "MidpointRight": 77.67500000000001,
+            "MidpointBottom": 114.88000000000011,
+            "MidpointLeft": 77.67500000000001
+        }
+    ]
+}

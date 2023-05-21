@@ -41,12 +41,10 @@ def generate_motif(name, pieces_height, pieces_width, abs_height=100, abs_width=
         "PiecesCount": number_of_pieces,
         "Rows": pieces_height,
         "Cols": pieces_width,
-        "JigsawSize": {
-            "TotalWidth": abs_width,
-            "TotalHeight": abs_height,
-            "PieceWidth": piece_w,
-            "PieceHeight": piece_h,
-        },
+        "TotalWidth": abs_width,
+        "TotalHeight": abs_height,
+        "PieceWidth": piece_w,
+        "PieceHeight": piece_h,
         "Pieces": []
     }
 
@@ -320,16 +318,18 @@ def generate_svg_jigsaw(motif_file: str, original_image: str):
             left_anchor = 37
 
         midpoint_top = (float(path.d().split(" ")[top_anchor].split(
-            ",")[0]) - float(xmin)) + (metadata["JigsawSize"]["PieceWidth"] / 2)
+            ",")[0]) - float(xmin)) + (metadata["PieceWidth"] / 2)
         midpoint_right = (float(path.d().split(" ")[right_anchor].split(
-            ",")[1]) - float(ymin)) + (metadata["JigsawSize"]["PieceHeight"] / 2)
+            ",")[1]) - float(ymin)) + (metadata["PieceHeight"] / 2)
         midpoint_bottom = (float(path.d().split(" ")[left_anchor].split(
-            ",")[0]) - float(xmin)) + (metadata["JigsawSize"]["PieceWidth"] / 2)
+            ",")[0]) - float(xmin)) + (metadata["PieceWidth"] / 2)
         midpoint_left = (float(path.d().split(" ")[top_anchor].split(
-            ",")[1]) - float(ymin)) + (metadata["JigsawSize"]["PieceHeight"] / 2)
+            ",")[1]) - float(ymin)) + (metadata["PieceHeight"] / 2)
 
-        metadata["Pieces"][p]["Midpoint"] = {
-            "Top": midpoint_top, "Right": midpoint_right, "Bottom": midpoint_bottom, "Left": midpoint_left}
+        metadata["Pieces"][p]["MidpointTop"] = midpoint_top
+        metadata["Pieces"][p]["MidpointRight"] = midpoint_right
+        metadata["Pieces"][p]["MidpointBottom"] = midpoint_bottom
+        metadata["Pieces"][p]["MidpointLeft"] = midpoint_left
 
         svg = """\
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="{} {} {w} {h}" width="{w}" height="{h}">
