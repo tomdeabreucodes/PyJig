@@ -55,6 +55,7 @@ def generate_motif(name, pieces_height, pieces_width, abs_height=100, abs_width=
         col = col + 1 if col < pieces_width else 1
 
         metadata["Pieces"].append({
+            "PieceNumber": i,
             "UpperEdge": True if row == 1 else False,
             "LowerEdge": True if row == pieces_height else False,
             "LeftEdge": True if col == 1 else False,
