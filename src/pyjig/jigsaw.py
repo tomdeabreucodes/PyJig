@@ -6,12 +6,10 @@ import random
 import subprocess
 import cv2
 import numpy as np
-from decorators import timer
 import cairosvg
 from PIL import Image
 import defusedxml.ElementTree as ET
 from svgpathtools import svg2paths
-import pprint
 
 """
 Generate jigsaw motifs and digital puzzle sets.
@@ -23,8 +21,12 @@ generate_jigsaw
 jigsaw_factory
 """
 
+class Motif():
+    def init(name, pieces_height, pieces_width, image=None):
+        
+        name = ""
 
-@timer
+
 def generate_motif(name, pieces_height, pieces_width, abs_height=100, abs_width=100):
     """Generate a jigsaw motif (template) to be used as the cutting lines"""
     number_of_pieces = pieces_height * pieces_width
@@ -68,7 +70,7 @@ def generate_motif(name, pieces_height, pieces_width, abs_height=100, abs_width=
         x = origin_w + piece_w
         y = origin_h + piece_h
 
-        # Calculate distance to the start of the
+        # Calculate distance to the start of the notch
         to_v_notch = piece_h * 0.4
         to_h_notch = piece_w * 0.4
         v_notch = piece_h - (2 * to_v_notch)
@@ -197,7 +199,6 @@ def generate_motif(name, pieces_height, pieces_width, abs_height=100, abs_width=
 generate_motif("Zugpsitze Mountain Landscape", 5, 8, 630, 1200)
 
 
-@timer
 def generate_masks(motif_file):
     """Generate binary masks from the image and motif"""
 
@@ -212,8 +213,6 @@ def generate_masks(motif_file):
     for p, path in enumerate(paths):
         # Create a new SVG file with just the current path element
         new_svg = f'<svg width="{width}" height="{height}">{ET.tostring(path)}</svg>'
-
-        # Convert the SVG file to a PNG image using cairosvg
         mem = io.BytesIO()
         cairosvg.svg2png(bytestring=new_svg,
                          write_to=mem, background_color=None)
@@ -224,7 +223,6 @@ def generate_masks(motif_file):
 # masks = generate_masks('motif.svg')
 
 
-@timer
 def generate_png_jigsaw(original_image, masks):
     """Generate set of puzzle Pieces as individual .PNG files"""
     image = cv2.imread(original_image)
@@ -277,7 +275,6 @@ def image_encode(original_image):
     return (ext, encoded_string)
 
 
-@timer
 def generate_svg_jigsaw(motif_file: str, original_image: str):
     metadata = json.load(open("puzzle_info.json"))
 
