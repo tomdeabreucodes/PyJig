@@ -149,7 +149,7 @@ def generate_motif(name, pieces_height, pieces_width, abs_height=100, abs_width=
                     origin_w+(piece_w * 0.5)-((to_h_notch+h_notch)-(piece_w * 0.5))*2)
             )
 
-            # Create an inverted verseion for replicating the Left side of the adjacent piece
+            # Create an inverted version for replicating the Left side of the adjacent piece
             b_inverted = "C {origin_w},{y} {half_piece_w},{w_curve_1} {to_notch_start},{y} S {control_point},{w_curve_2} {to_notch_end},{y} S {x},{y} {x},{y}".format(
                 x=str(x),
                 y=str(y),
