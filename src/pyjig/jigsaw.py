@@ -228,7 +228,7 @@ class Cut():
         return "Puzzle cut template created {}".format(filepath)
 
 
-mycut = Cut(5, 4, image="./Zugpsitze_mountain.jpg", use_image=True)
+# mycut = Cut(5, 4, image="./Zugpsitze_mountain.jpg", use_image=True)
 
 
 def image_encode(original_image):
@@ -322,8 +322,8 @@ class Jigsaw():
         return "Svg puzzle set generated: {} ({} Pieces) Directory: {}".format(self.image, len(paths), outdirectory)
 
 
-myjig = Jigsaw(mycut, "Zugpsitze_mountain.jpg")
-print(myjig.generate_svg_jigsaw("./Pieces"))
+# myjig = Jigsaw(mycut, "Zugpsitze_mountain.jpg")
+# print(myjig.generate_svg_jigsaw("./Pieces"))
 
 
 def jigsaw_factory():
