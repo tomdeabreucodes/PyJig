@@ -10,13 +10,13 @@ pip install pyjigsaw
 ## Usage
 
 ```python
-from jigsaw_generator import Cut, Jigsaw
+from pyjigsaw import jigsawfactory
 
 # Create a jigsaw cut template
-mycut = Cut(5, 4, image="./Zugpsitze_mountain.jpg", use_image=True)
+mycut = jigsawfactory.Cut(5, 4, image="./Zugpsitze_mountain.jpg", use_image=True)
 
 # Generate a jigsaw set from the cut template
-myjig = Jigsaw(mycut, "Zugpsitze_mountain.jpg")
+myjig = jigsawfactory.Jigsaw(mycut, "Zugpsitze_mountain.jpg")
 myjig.generate_svg_jigsaw("./Pieces")
 ```
 ## Features
@@ -25,21 +25,21 @@ myjig.generate_svg_jigsaw("./Pieces")
 The Cut class is responsible for creating jigsaw cut templates. It takes parameters such as the number of pieces in height and width, absolute height and width, an optional image for deriving dimensions, and stroke/fill color specifications.
 
 ```python
-from jigsaw_generator import Cut
+from pyjigsaw import jigsawfactory
 
 
 # Create a jigsaw cut template
-mycut = Cut(5, 4, image="./Zugpsitze_mountain.jpg", use_image=True)
+mycut = jigsawfactory.Cut(5, 4, image="./Zugpsitze_mountain.jpg", use_image=True)
 ```
 
 ### Jigsaw Class
 
 The Jigsaw class uses a Cut template to generate a set of jigsaw pieces in SVG format. It takes a Cut object and an image file path. The generated SVG files are saved in the specified output directory.
 ```python
-from jigsaw_generator import Jigsaw
+from pyjigsaw import jigsawfactory
 
 # Create a jigsaw set from the cut template
-myjig = Jigsaw(mycut, "Zugpsitze_mountain.jpg")
+myjig = jigsawfactory.Jigsaw(mycut, "Zugpsitze_mountain.jpg")
 myjig.generate_svg_jigsaw("./Pieces")
 ```
 

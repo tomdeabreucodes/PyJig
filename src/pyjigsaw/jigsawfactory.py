@@ -2,10 +2,7 @@ import base64
 from math import ceil
 import random
 import subprocess
-import numpy as np
-import cairosvg
 from PIL import Image
-import defusedxml.ElementTree as ET
 from svgpathtools import svg2paths
 import tempfile
 import os
