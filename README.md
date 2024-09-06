@@ -1,4 +1,9 @@
 This Python package provides functionality to generate jigsaw puzzle cut templates and digital puzzle sets. It includes functions for creating jigsaw templates, applying cuts, and generating SVG representations.
+## Pre-requisites
+
+* Python >= 3.8
+* [Inkscape](https://inkscape.org/release/inkscape-1.3.2/)
+
 ## Installation
 
 You can install the package using pip:
