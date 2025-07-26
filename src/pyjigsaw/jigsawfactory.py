@@ -267,8 +267,12 @@ class Jigsaw:
         fp = tempfile.NamedTemporaryFile(suffix=".SVG")
 
         fp.write(self.cut.svg_template.encode("utf-8"))
+        fp.flush()  # Ensure content is written to disk before reading
 
-        ext, encoded = image_encode(self.image)
+        if self.image:
+            ext, encoded = image_encode(self.image)
+        else:
+            ext, encoded = None, None
         paths, _ = svg2paths(fp.name)
         fp.close()
 
@@ -342,7 +346,9 @@ class Jigsaw:
             metadata["Pieces"][p]["MidpointBottom"] = midpoint_bottom
             metadata["Pieces"][p]["MidpointLeft"] = midpoint_left
 
-            svg = """\
+            if self.image and ext and encoded:
+                # SVG with image
+                svg = """\
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="{} {} {w} {h}" width="{w}" height="{h}">
         <defs>
             <path id="cropPath" d="{d}" />
@@ -353,8 +359,17 @@ class Jigsaw:
         <image href="data:image/{ext};base64,{encoded}" clip-path="url(#crop)"/>
     </svg>
     """.format(
-                xmin, ymin, w=width, h=height, d=path.d(), ext=ext, encoded=encoded
-            )
+                    xmin, ymin, w=width, h=height, d=path.d(), ext=ext, encoded=encoded
+                )
+            else:
+                # SVG without image (just the path shape)
+                svg = """\
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="{} {} {w} {h}" width="{w}" height="{h}">
+        <path d="{d}" stroke="black" fill="white"/>
+    </svg>
+    """.format(
+                    xmin, ymin, w=width, h=height, d=path.d()
+                )
             with open(os.path.join(outdirectory, "{}.svg".format(p)), "w") as file:
                 file.write(svg)
 
