@@ -17,7 +17,7 @@ pip install pyjigsaw
 from pyjigsaw import jigsawfactory
 
 # Create a jigsaw cut template
-mycut = jigsawfactory.Cut(5, 4, image="./Zugpsitze_mountain.jpg", use_image=True)
+mycut = jigsawfactory.Cut(4, 5, image="./Zugpsitze_mountain.jpg", use_image=True)
 
 # Generate a jigsaw set from the cut template
 myjig = jigsawfactory.Jigsaw(mycut, "Zugpsitze_mountain.jpg")
@@ -33,7 +33,7 @@ from pyjigsaw import jigsawfactory
 
 
 # Create a jigsaw cut template
-mycut = jigsawfactory.Cut(5, 4, image="./Zugpsitze_mountain.jpg", use_image=True)
+mycut = jigsawfactory.Cut(4, 5, image="./Zugpsitze_mountain.jpg", use_image=True)
 ```
 
 ### Jigsaw Class
