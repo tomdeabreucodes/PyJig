@@ -1,7 +1,6 @@
 import base64
 from math import ceil
 import random
-import subprocess
 from PIL import Image
 from svgpathtools import svg2paths
 import tempfile
@@ -18,8 +17,18 @@ jigsaw_factory
 """
 
 
-class Cut():
-    def __init__(self, pieces_height, pieces_width, abs_height=None, abs_width=None, image=None, use_image=False, stroke_color="black", fill_color="white"):
+class Cut:
+    def __init__(
+        self,
+        pieces_height,
+        pieces_width,
+        abs_height=None,
+        abs_width=None,
+        image=None,
+        use_image=False,
+        stroke_color="black",
+        fill_color="white",
+    ):
         self.pieces_height = pieces_height
         self.pieces_width = pieces_width
         self.abs_height = abs_height
@@ -28,17 +37,19 @@ class Cut():
         self.stroke_color = stroke_color
         self.fill_color = fill_color
         self.use_image = use_image
-        if use_image and self.image == None:
+        if use_image and self.image is None:
             raise Exception("No image provided")
 
-        if (self.abs_height == None or self.abs_width == None) and self.image == None:
+        if (self.abs_height is None or self.abs_width is None) and self.image is None:
             raise Exception(
-                "Height and width of the desired template must either be provided manually, or an image must be provided for it to be derived from.")
+                "Height and width of the desired template must either be provided manually, or an image must be provided for it to be derived from."
+            )
 
-        if not use_image and (self.abs_height == None or self.abs_width == None):
+        if not use_image and (self.abs_height is None or self.abs_width is None):
             raise Exception(
-                "Please either set a height and width or pass use_image=True in your function call")
-        if use_image and self.image != None:
+                "Please either set a height and width or pass use_image=True in your function call"
+            )
+        if use_image and self.image is not None:
             width, height = Image.open(self.image).size
             self.abs_width = width
             self.abs_height = height
@@ -60,22 +71,24 @@ class Cut():
             "TotalHeight": self.abs_height,
             "PieceWidth": piece_w,
             "PieceHeight": piece_h,
-            "Pieces": []
+            "Pieces": [],
         }
 
         # Create svg path for each piece
-        for i in range(1, number_of_pieces+1):
+        for i in range(1, number_of_pieces + 1):
             # Find grid position
             row = ceil(i / self.pieces_width)
             col = col + 1 if col < self.pieces_width else 1
 
-            metadata["Pieces"].append({
-                "PieceNumber": i,
-                "UpperEdge": True if row == 1 else False,
-                "LowerEdge": True if row == self.pieces_height else False,
-                "LeftEdge": True if col == 1 else False,
-                "RightEdge": True if col == self.pieces_width else False,
-            })
+            metadata["Pieces"].append(
+                {
+                    "PieceNumber": i,
+                    "UpperEdge": True if row == 1 else False,
+                    "LowerEdge": True if row == self.pieces_height else False,
+                    "LeftEdge": True if col == 1 else False,
+                    "RightEdge": True if col == self.pieces_width else False,
+                }
+            )
 
             # Set pixel start and end positions
             origin_w = (col - 1) * piece_w
@@ -100,7 +113,7 @@ class Cut():
             # Top section
             if row > 1:
                 # Use inverted command from adjacent piece
-                t = all_commands['{}-{}-t'.format(row, col)]
+                t = all_commands["{}-{}-t".format(row, col)]
             else:
                 # Edge piece
                 t = "L {}, {}".format(str(x), str(origin_h))
@@ -114,16 +127,16 @@ class Cut():
                     x=str(x),
                     y=str(y),
                     origin_h=origin_h,
-                    origin_w=origin_w,
-                    half_piece_h=str(origin_h+(piece_h * 0.5)),
-                    w_curve_1=str(
-                        origin_w + (piece_w * curve_multiplier_1)),
-                    w_curve_2=str(
-                        origin_w + (piece_w * curve_multiplier_2)),
-                    to_notch_start=str(origin_h+to_v_notch),
-                    to_notch_end=str(origin_h+to_v_notch+v_notch),
+                    half_piece_h=str(origin_h + (piece_h * 0.5)),
+                    w_curve_1=str(origin_w + (piece_w * curve_multiplier_1)),
+                    w_curve_2=str(origin_w + (piece_w * curve_multiplier_2)),
+                    to_notch_start=str(origin_h + to_v_notch),
+                    to_notch_end=str(origin_h + to_v_notch + v_notch),
                     control_point=str(
-                        origin_h+(piece_h * 0.5)+((to_v_notch+v_notch)-(piece_h * 0.5))*2)
+                        origin_h
+                        + (piece_h * 0.5)
+                        + ((to_v_notch + v_notch) - (piece_h * 0.5)) * 2
+                    ),
                 )
 
                 # Create an inverted verseion for replicating the Left side of the adjacent piece
@@ -131,16 +144,16 @@ class Cut():
                     x=str(x),
                     y=str(y),
                     origin_h=origin_h,
-                    origin_w=origin_w,
-                    half_piece_h=str(origin_h+(piece_h * 0.5)),
-                    w_curve_1=str(
-                        origin_w + (piece_w * curve_multiplier_1)),
-                    w_curve_2=str(
-                        origin_w + (piece_w * curve_multiplier_2)),
-                    to_notch_start=str(origin_h+to_v_notch+v_notch),
-                    to_notch_end=str(origin_h+to_v_notch),
+                    half_piece_h=str(origin_h + (piece_h * 0.5)),
+                    w_curve_1=str(origin_w + (piece_w * curve_multiplier_1)),
+                    w_curve_2=str(origin_w + (piece_w * curve_multiplier_2)),
+                    to_notch_start=str(origin_h + to_v_notch + v_notch),
+                    to_notch_end=str(origin_h + to_v_notch),
                     control_point=str(
-                        origin_h+(piece_h * 0.5)-((to_v_notch+v_notch)-(piece_h * 0.5))*2)
+                        origin_h
+                        + (piece_h * 0.5)
+                        - ((to_v_notch + v_notch) - (piece_h * 0.5)) * 2
+                    ),
                 )
                 all_commands["{}-{}-l".format(row, col + 1)] = r_inverted
             else:
@@ -156,32 +169,33 @@ class Cut():
                     x=str(x),
                     y=str(y),
                     origin_w=origin_w,
-                    half_piece_w=str(origin_w+(piece_w * 0.5)),
-                    w_curve_1=str(
-                        origin_h + (piece_h * curve_multiplier_1)),
-                    w_curve_2=str(
-                        origin_h + (piece_h * curve_multiplier_2)),
-                    to_notch_start=str(origin_w+to_h_notch+h_notch),
-                    to_notch_end=str(origin_w+to_h_notch),
+                    half_piece_w=str(origin_w + (piece_w * 0.5)),
+                    w_curve_1=str(origin_h + (piece_h * curve_multiplier_1)),
+                    w_curve_2=str(origin_h + (piece_h * curve_multiplier_2)),
+                    to_notch_start=str(origin_w + to_h_notch + h_notch),
+                    to_notch_end=str(origin_w + to_h_notch),
                     control_point=str(
-                        origin_w+(piece_w * 0.5)-((to_h_notch+h_notch)-(piece_w * 0.5))*2)
+                        origin_w
+                        + (piece_w * 0.5)
+                        - ((to_h_notch + h_notch) - (piece_w * 0.5)) * 2
+                    ),
                 )
 
                 # Create an inverted version for replicating the Left side of the adjacent piece
                 b_inverted = "C {origin_w},{y} {half_piece_w},{w_curve_1} {to_notch_start},{y} S {control_point},{w_curve_2} {to_notch_end},{y} S {x},{y} {x},{y}".format(
                     x=str(x),
                     y=str(y),
-                    origin_h=origin_h,
                     origin_w=origin_w,
-                    half_piece_w=str(origin_w+(piece_w * 0.5)),
-                    w_curve_1=str(
-                        origin_h + (piece_h * curve_multiplier_1)),
-                    w_curve_2=str(
-                        origin_h + (piece_h * curve_multiplier_2)),
-                    to_notch_start=str(origin_w+to_h_notch),
-                    to_notch_end=str(origin_w+to_h_notch+h_notch),
+                    half_piece_w=str(origin_w + (piece_w * 0.5)),
+                    w_curve_1=str(origin_h + (piece_h * curve_multiplier_1)),
+                    w_curve_2=str(origin_h + (piece_h * curve_multiplier_2)),
+                    to_notch_start=str(origin_w + to_h_notch),
+                    to_notch_end=str(origin_w + to_h_notch + h_notch),
                     control_point=str(
-                        origin_w+(piece_w * 0.5)+((to_h_notch+h_notch)-(piece_w * 0.5))*2)
+                        origin_w
+                        + (piece_w * 0.5)
+                        + ((to_h_notch + h_notch) - (piece_w * 0.5)) * 2
+                    ),
                 )
                 all_commands["{}-{}-t".format(row + 1, col)] = b_inverted
             else:
@@ -191,8 +205,8 @@ class Cut():
             commands.append(b)
 
             if col > 1:
-                l = all_commands["{}-{}-l".format(row, col)]
-                commands.append(l)
+                left_command = all_commands["{}-{}-l".format(row, col)]
+                commands.append(left_command)
 
             # Close path (including straight line if Left edge piece)
             commands.append("z")
@@ -200,7 +214,8 @@ class Cut():
             # Construct path element
             d = "\n\t".join(commands)
             path = '<path stroke="{}" fill="{}" d="{}" />'.format(
-                self.stroke_color, self.fill_color, d)
+                self.stroke_color, self.fill_color, d
+            )
             paths.append(path)
 
         paths = "\n\t".join(paths)
@@ -208,7 +223,9 @@ class Cut():
     <svg width="{}" height="{}">
         {}
     </svg>
-        """.format(self.abs_width, self.abs_height, paths)
+        """.format(
+            self.abs_width, self.abs_height, paths
+        )
 
         self.svg_template = svg_template
 
@@ -232,39 +249,60 @@ def image_encode(original_image):
     ext = original_image.split(".")[1]
     ext = "jpeg" if ext == "jpg" else ext
     with open(original_image, "rb") as image:
-        encoded_string = base64.b64encode(image.read()).decode('utf-8')
+        encoded_string = base64.b64encode(image.read()).decode("utf-8")
     return (ext, encoded_string)
 
 
-class Jigsaw():
+class Jigsaw:
     def __init__(self, cut: Cut, image=None):
         self.cut = cut
         self.image = image
 
     def generate_svg_jigsaw(self, outdirectory):
         metadata = self.cut.metadata
+
+        # Create output directory if it doesn't exist
+        os.makedirs(outdirectory, exist_ok=True)
+
         fp = tempfile.NamedTemporaryFile(suffix=".SVG")
 
-        fp.write(self.cut.svg_template.encode('utf-8'))
+        fp.write(self.cut.svg_template.encode("utf-8"))
 
-        bboxes = subprocess.check_output(
-            ["inkscape", "--query-all", "{}".format(fp.name)]).decode('utf-8')
-        bboxes = bboxes.split("\n")[1:-1]
         ext, encoded = image_encode(self.image)
         paths, _ = svg2paths(fp.name)
         fp.close()
 
         # Apply bounding box for each path and generate svg from template
         for p, path in enumerate(paths):
-            xmin, ymin, width, height = bboxes[p].split(",")[1:]
+            # Get bounding box from svgpathtools - format is (xmin, xmax, ymin, ymax)
+            xmin, xmax, ymin, ymax = path.bbox()
+            width = xmax - xmin
+            height = ymax - ymin
 
-            top_left_corner = True if metadata["Pieces"][p]["UpperEdge"] and metadata["Pieces"][p]["LeftEdge"] else False
-            top_right_corner = True if metadata["Pieces"][p][
-                "UpperEdge"] and metadata["Pieces"][p]["RightEdge"] else False
-            bottom_left_corner = True if metadata["Pieces"][p][
-                "LowerEdge"] and metadata["Pieces"][p]["LeftEdge"] else False
-            bottom_right_corner = True if metadata["Pieces"][p][
-                "LowerEdge"] and metadata["Pieces"][p]["RightEdge"] else False
+            top_left_corner = (
+                True
+                if metadata["Pieces"][p]["UpperEdge"]
+                and metadata["Pieces"][p]["LeftEdge"]
+                else False
+            )
+            top_right_corner = (
+                True
+                if metadata["Pieces"][p]["UpperEdge"]
+                and metadata["Pieces"][p]["RightEdge"]
+                else False
+            )
+            bottom_left_corner = (
+                True
+                if metadata["Pieces"][p]["LowerEdge"]
+                and metadata["Pieces"][p]["LeftEdge"]
+                else False
+            )
+            bottom_right_corner = (
+                True
+                if metadata["Pieces"][p]["LowerEdge"]
+                and metadata["Pieces"][p]["RightEdge"]
+                else False
+            )
 
             top_anchor = 1
             if top_left_corner or metadata["Pieces"][p]["UpperEdge"]:
@@ -286,14 +324,18 @@ class Jigsaw():
                 right_anchor = 13
                 left_anchor = 37
 
-            midpoint_top = (float(path.d().split(" ")[top_anchor].split(
-                ",")[0]) - float(xmin)) + (metadata["PieceWidth"] / 2)
-            midpoint_right = (float(path.d().split(" ")[right_anchor].split(
-                ",")[1]) - float(ymin)) + (metadata["PieceHeight"] / 2)
-            midpoint_bottom = (float(path.d().split(" ")[left_anchor].split(
-                ",")[0]) - float(xmin)) + (metadata["PieceWidth"] / 2)
-            midpoint_left = (float(path.d().split(" ")[top_anchor].split(
-                ",")[1]) - float(ymin)) + (metadata["PieceHeight"] / 2)
+            midpoint_top = (
+                float(path.d().split(" ")[top_anchor].split(",")[0]) - float(xmin)
+            ) + (metadata["PieceWidth"] / 2)
+            midpoint_right = (
+                float(path.d().split(" ")[right_anchor].split(",")[1]) - float(ymin)
+            ) + (metadata["PieceHeight"] / 2)
+            midpoint_bottom = (
+                float(path.d().split(" ")[left_anchor].split(",")[0]) - float(xmin)
+            ) + (metadata["PieceWidth"] / 2)
+            midpoint_left = (
+                float(path.d().split(" ")[top_anchor].split(",")[1]) - float(ymin)
+            ) + (metadata["PieceHeight"] / 2)
 
             metadata["Pieces"][p]["MidpointTop"] = midpoint_top
             metadata["Pieces"][p]["MidpointRight"] = midpoint_right
@@ -310,13 +352,17 @@ class Jigsaw():
         </defs>
         <image href="data:image/{ext};base64,{encoded}" clip-path="url(#crop)"/>
     </svg>
-    """.format(xmin, ymin, w=width, h=height, d=path.d(), ext=ext, encoded=encoded)
-            with open(os.path.join(outdirectory, '{}.svg'.format(p)), 'w') as file:
+    """.format(
+                xmin, ymin, w=width, h=height, d=path.d(), ext=ext, encoded=encoded
+            )
+            with open(os.path.join(outdirectory, "{}.svg".format(p)), "w") as file:
                 file.write(svg)
 
         self.cut.metadata = metadata
 
-        return "Svg puzzle set generated: {} ({} Pieces) Directory: {}".format(self.image, len(paths), outdirectory)
+        return "Svg puzzle set generated: {} ({} Pieces) Directory: {}".format(
+            self.image, len(paths), outdirectory
+        )
 
 
 # myjig = Jigsaw(mycut, "Zugpsitze_mountain.jpg")

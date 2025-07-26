@@ -1,4 +1,4 @@
-defusedxml==0.7.1
-opencv_contrib_python==4.7.0.72
-Pillow==10.3.0
-svgpathtools==1.6.0
+defusedxml>=0.7.1
+opencv-contrib-python>=4.8.0
+Pillow>=10.4.0
+svgpathtools>=1.6.0

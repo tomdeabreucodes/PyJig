@@ -2,7 +2,6 @@ This Python package provides functionality to generate jigsaw puzzle cut templat
 ## Pre-requisites
 
 * Python >= 3.8
-* [Inkscape](https://inkscape.org/release/inkscape-1.3.2/)
 
 ## Installation
 
