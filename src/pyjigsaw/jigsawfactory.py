@@ -264,17 +264,20 @@ class Jigsaw:
         # Create output directory if it doesn't exist
         os.makedirs(outdirectory, exist_ok=True)
 
-        fp = tempfile.NamedTemporaryFile(suffix=".SVG")
+        fp = tempfile.NamedTemporaryFile(suffix=".SVG", delete=False)
 
-        fp.write(self.cut.svg_template.encode("utf-8"))
-        fp.flush()  # Ensure content is written to disk before reading
+        try:
+            fp.write(self.cut.svg_template.encode("utf-8"))
+            fp.flush()
 
-        if self.image:
-            ext, encoded = image_encode(self.image)
-        else:
-            ext, encoded = None, None
-        paths, _ = svg2paths(fp.name)
-        fp.close()
+            if self.image:
+                ext, encoded = image_encode(self.image)
+            else:
+                ext, encoded = None, None
+            paths, _ = svg2paths(fp.name)
+        finally:
+            fp.close()
+            os.unlink(fp.name)
 
         # Apply bounding box for each path and generate svg from template
         for p, path in enumerate(paths):
