@@ -1,4 +1,7 @@
 This Python package provides functionality to generate jigsaw puzzle cut templates and digital puzzle sets. It includes functions for creating jigsaw templates, applying cuts, and generating SVG representations.
+
+<img width="916" height="696" alt="image" src="https://github.com/user-attachments/assets/56d9e8a4-d8e8-4858-869c-abb6b93f3249" />
+
 ## Pre-requisites
 
 * Python >= 3.8
